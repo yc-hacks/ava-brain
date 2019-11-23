@@ -15,7 +15,13 @@ def hello():
 @application.route('/ask', methods = ['GET', 'POST'])
 def ask():
     question = request.args.get('question')
-    return ava.ask(question)
+    answers = ava.ask(question)
+    return {
+        "success": True,
+        'shortAnswer': answers['answer'],
+        'title': answers['title'],
+        'longAnswer': answers['paragraph']
+    }
 
 # run the app.
 if __name__ == "__main__":
