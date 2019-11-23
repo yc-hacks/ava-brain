@@ -1,9 +1,11 @@
 from flask import Flask, request
+from flask_cors import CORS
 
 from qa import Ava
 
 # EB looks for an 'application' callable by default.
 application = Flask(__name__)
+CORS(application)
 
 ava = Ava()
 
@@ -11,6 +13,7 @@ ava = Ava()
 def hello():
     print(request)
     return 'Hello World'
+
 
 @application.route('/ask', methods = ['GET', 'POST'])
 def ask():
