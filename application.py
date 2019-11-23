@@ -10,7 +10,7 @@ CORS(application)
 
 ava = Ava()
 
-podcastDF = pd.read_csv('./data/podcasts/podcasts.csv', names=["uuid", 'title', 'author', 'description', 'category', 'image'])
+podcastDF = pd.read_csv('./data/podcasts/merged_podcasts.csv')
 
 @application.route('/')
 def hello():
