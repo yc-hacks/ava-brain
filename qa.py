@@ -8,11 +8,15 @@ from cdqa.utils.filters import filter_paragraphs
 
 class Ava:
     def __init__(self):
-        princeton_df = pd.read_csv('./data/princeton/articles.csv')
-        princeton_df['paragraphs'] = princeton_df['text'].apply(lambda x: x.splitlines())
-        self.cdqa_pipeline = self.fit(princeton_df) 
+        # princeton_df = pd.read_csv('./data/princeton/articles.csv')
+        # princeton_df['paragraphs'] = princeton_df['text'].apply(lambda x: x.splitlines())
 
-        self.df = princeton_df
+        df = pd.read_csv('./data/podcasts/merged_episodes.csv')
+        df['paragraphs'] = df['paragraphs'].apply(lambda x: [x])
+
+        self.cdqa_pipeline = self.fit(df) 
+
+        self.df = df
 
         print("[Ava] Instance Up")
     
