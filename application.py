@@ -26,7 +26,7 @@ def ask():
         'title': answers['title'],
         'longAnswer': answers['paragraph']
     })
-    response.headers.add('Access-Control-Allow-Origin', '*')
+    # response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 # run the app.
