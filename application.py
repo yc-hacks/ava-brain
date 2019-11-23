@@ -19,12 +19,14 @@ def hello():
 def ask():
     question = request.args.get('question')
     answers = ava.ask(question)
-    return {
+    response = flask.jsonify({
         "success": True,
         'shortAnswer': answers['answer'],
         'title': answers['title'],
         'longAnswer': answers['paragraph']
-    }
+    })
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 # run the app.
 if __name__ == "__main__":
