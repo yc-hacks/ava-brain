@@ -1,11 +1,11 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from qa import Ava
 
 # EB looks for an 'application' callable by default.
 application = Flask(__name__)
-cors = CORS(application, origins=["http://localhost:3000"], headers=['Content-Type'], expose_headers=['Access-Control-Allow-Origin'], supports_credentials=True)
+CORS(application)
 
 ava = Ava()
 
@@ -16,6 +16,7 @@ def hello():
 
 
 @application.route('/ask', methods = ['GET', 'POST'])
+@cross_origin()
 def ask():
     question = request.args.get('question')
     answers = ava.ask(question)
@@ -25,7 +26,7 @@ def ask():
         'title': answers['title'],
         'longAnswer': answers['paragraph']
     })
-    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 # run the app.
