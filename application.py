@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 from qa import Ava
 
@@ -9,10 +9,12 @@ ava = Ava()
 
 @application.route('/')
 def hello():
+    print(request)
     return 'Hello World'
 
-@application.route('/ask')
+@application.route('/ask', methods = ['GET', 'POST'])
 def ask():
+    print(request)
     return ava.ask("When was Princeton founded?")
 
 # run the app.
