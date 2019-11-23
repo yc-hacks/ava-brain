@@ -40,9 +40,15 @@ class Ava:
         # print('title: {}\n'.format(prediction[1]))
         # print('paragraph: {}\n'.format(prediction[2]))
 
+        episodeTitle = prediction[1]
+        row = self.df.loc[self.df['title'] == episodeTitle].iloc[0]
+
+        print(row)
+
         return {
             'query': question,
             'answer': prediction[0],
             'title': prediction[1],
-            'paragraph': prediction[2]
+            'paragraph': prediction[2],
+            'data': row
         }
