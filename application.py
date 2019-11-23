@@ -5,7 +5,7 @@ from qa import Ava
 
 # EB looks for an 'application' callable by default.
 application = Flask(__name__)
-CORS(application)
+cors = CORS(app, origins=["http://localhost:3000"], headers=['Content-Type'], expose_headers=['Access-Control-Allow-Origin'], supports_credentials=True)
 
 ava = Ava()
 
