@@ -14,8 +14,8 @@ def hello():
 
 @application.route('/ask', methods = ['GET', 'POST'])
 def ask():
-    print(request)
-    return ava.ask("When was Princeton founded?")
+    question = request.args.get('question')
+    return ava.ask(question)
 
 # run the app.
 if __name__ == "__main__":
