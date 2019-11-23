@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from qa import Ava
@@ -19,7 +19,7 @@ def hello():
 def ask():
     question = request.args.get('question')
     answers = ava.ask(question)
-    response = flask.jsonify({
+    response = jsonify({
         "success": True,
         'shortAnswer': answers['answer'],
         'title': answers['title'],
